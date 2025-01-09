@@ -1,0 +1,583 @@
+/* General styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #202D48;
+  padding-top: 20px;
+  box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.sidenav h1 {
+  font-size: 36px;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 2px solid #4f6fb3;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.options span {
+  background-color: #4f6fb3;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 80%;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.options span:hover {
+  background-color: #3b5b85;
+}
+
+.main {
+  margin-left: 250px;
+  padding: 30px 20px;
+}
+
+.header {
+  padding: 20px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #202D48;
+}
+
+.navigate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #4f6fb3;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.navigate span {
+  font-size: 24px;
+  color: #4f6fb3;
+}
+
+.container {
+  display: inline-block;
+  width: 28%;
+  height: auto;
+  margin-right: 2%;
+  margin-bottom: 0px;
+  border-radius: 8px;
+  background-color: #6c7a972d;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  transition: transform 0.3s;
+  min-height: 500px;
+}
+
+.container:hover {
+  transform: scale(1.05);
+}
+
+.container h3 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: #202D48;
+}
+
+#addnew {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+.cards {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  border: 2px solid rgba(134, 172, 243, 0.61);
+  margin-top: 20px;
+  height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.cards input {
+  border: none;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.cards textarea {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  resize: none;
+}
+
+.card {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+}
+
+.card .edit {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #4f6fb3;
+}
+
+.card .edit:hover {
+  color: #202D48;
+}
+
+/* Scrollbar styles */
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.cards::-webkit-scrollbar {
+  display: none;
+}
+
+.dots {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #333;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+/* Heading section */
+.heading {
+  display:inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10%;
+  gap: 10px;
+}
+
+.heading h2 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #202D48;
+}
+
+/* Dot colors */
+#dotone {
+  background-color: rgb(52, 130, 233);
+}
+
+#dottwo {
+  background-color: yellow;
+}
+
+#dotthree {
+  background-color: rgb(70, 211, 70);
+}
+
+/* Button styles */
+#addnew button {
+  background-color: #202D48;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 40px;
+  margin-right: 100px;
+}
+
+#addnew button:hover {
+  background-color: #4f6fb3;
+}
+
+#addnew button svg {
+  height: 20px;
+  fill: #fff;
+  margin-right: 8px;
+}
+
+.swipeBtns{
+  display: none;
+}
+
+.addTaskBtn {
+  margin-top: 20px;
+  padding: 10px 10px 10px 10px;
+  background-color: transparent;
+  color: black;
+  border: dotted black;
+  cursor: pointer;
+  height: 60px;
+  width: 95%;
+  font-size: large;
+  border-radius: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .sidenav {
+    width: 220px;
+  }
+
+  .main {
+    margin-left: 220px;
+  }
+  .dateRange{
+    display: none;
+  }
+  .container {
+    width: 80%;
+    margin-left: 10%;
+  }
+  
+  .addTaskBtn{
+    position: absolute;
+    top: 10px;
+  }
+  .searchBox input{
+
+    width: 50%;
+  }
+  .searchBox{
+    border: black 2px solid;
+    width: 50%;
+  }
+}
+
+@media (max-width: 992px) {
+  .sidenav {
+    /* width: 200px; */
+    display: none;
+  }
+
+  
+
+  .container {
+    width: 700px;
+    height: 20px;
+    margin-right: 10%;
+    margin-left: 0%;
+  }
+  
+  .header {
+    padding-left: 5%;
+    font-size: 30px;
+  }
+
+  .cards {
+    width: 100%;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .sidenav {
+    width: 0;
+    visibility: hidden;
+  }
+
+  .main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .header {
+    padding-left: 5%;
+    font-size: 28px;
+  }
+
+  .tasks span {
+    font-size: 24px;
+  }
+
+  .container {
+    width: 100%;
+    margin-bottom: 20px;
+    height: auto;
+    padding: 0;
+  }
+
+  #addnew {
+    top: 10px;
+    right: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidenav {
+    visibility: hidden;
+  }
+
+  .main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .header {
+    padding-left: 5%;
+    font-size: 24px;
+  }
+
+  .tasks span {
+    font-size: 20px;
+  }
+
+  .container {
+    width: 100%;
+    height: auto;
+  }
+
+  #addnew {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+  }
+}
+
+.searchBox input {
+  font-size: 20px;
+  border-radius: 5px;
+  border: #4f6fb35b solid 2px;
+  height: 40px;
+  width: 170px;
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+/* Mobile-specific adjustments */
+@media only screen and (max-width: 768px) {
+  .sidenav {
+    width: 200px;
+    position: fixed;
+    left: -250px;
+    visibility: hidden; /* Initially hidden */
+  }
+
+  .searchBox{
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+
+  .addnew button {
+    border-radius: 50px;
+  }
+
+  .swipeBtns{
+    display: block ;
+  }
+  .searchBox input {
+    width: 60%;
+    height: 50px;
+  }
+
+  .main {
+    margin-left: 0; /* Remove left margin to accommodate swipe */
+    padding: 10px;
+  }
+  .dateRange{
+    display: none;
+  }
+  .header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+  }
+
+  .tasks {
+    font-size: 18px;
+  }
+
+  .addnew button {
+    padding: 10px;
+    background-color: #202D48;
+    color: #fff;
+    border: black solid 2px;
+    cursor: pointer;
+    position: absolute;
+    top: 2%;
+  }
+
+  /* Card container - swipeable containers */
+  .container {
+    width: 100%;
+    overflow-x:visible;
+    overflow-y:hidden;
+    display:inline-block;
+    transition: transform 0.3s ease;
+    padding: 20px;
+  }
+
+  .list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  /* Add a button inside the "To Start" container */
+  .addTaskBtn {
+    margin-top: 20px;
+    padding: 10px 10px 10px 10px;
+    background-color: transparent;
+    color: black;
+    border: dotted black;
+    cursor: pointer;
+    height: 100px;
+    width: 95%;
+    font-size: large;
+    border-radius: 10px;
+  }
+
+  .cardForm {
+    position: fixed;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    background-color: white;
+    padding: 20px;
+    display: none; /* Hide the form by default */
+  }
+}
+
+/* Mobile swipe functionality */
+.swiper-container {
+  display: flex;
+  width: 300%;
+  transform: translateX(0);
+}
+
+.swiper-slide {
+  width: 33.33%;
+}
+
+.dateRange input{
+  margin-left: 2%;
+  padding-right: 20px;
+  display: inline-block;;
+}
+.dateRange{
+  padding-right: 10px;
+  margin-left:70%;
+  margin-top:-2%;
+
+}
+
+.cardForm {
+  position: fixed; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  z-index: 1000; 
+}
+
+.cardForm input,
+.cardForm textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.cardForm input:focus,
+.cardForm textarea:focus {
+  border-color: #007bff;
+}
+
+.cardForm input {
+  height: 40px;
+}
+
+.cardForm textarea {
+  height: 120px;
+  resize: none;
+}
+
+.cardForm button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cardForm button:hover {
+  background-color: #0056b3;
+}
+
+.cardForm button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.cardForm .cancelBtn {
+  background-color: #f44336;
+  margin-left: 10px;
+}
+
+.cardForm .cancelBtn:hover {
+  background-color: #d32f2f;
+}
+
+.cardForm .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardForm .buttons button {
+  flex: 1;
+}
+
+.cardForm .buttons .cancelBtn {
+  margin-left: 10px;
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 999; 
+}

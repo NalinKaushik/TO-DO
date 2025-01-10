@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState , useRef } from "react";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -10,6 +10,51 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState(""); // Track search query
   const [dateRange, setDateRange] = useState({ from: "", to: "" }); // Track date range
   const [currentIndex, setCurrentIndex] = useState(0); // Index for swipeable containers
+  const touchStartX = useRef(0); // Track the starting X position of the touch
+  const touchEndX = useRef(0)
+  const addButtonRef = useRef(null); // Ref for the "Add New" button
+  const containerRefs = useRef([]);
+
+
+  const handleTouchStart = (e) => {
+    // Check if the touch is over the "Add New" button or the container itself
+    if (
+      (addButtonRef.current && addButtonRef.current.contains(e.target)) ||
+      containerRefs.current.some((ref) => ref && ref.contains(e.target))
+    ) {
+      e.stopPropagation(); // Prevent swipe interaction if over the button or container
+      return;
+    }
+    touchStartX.current = e.touches[0].clientX; // Get the starting position
+  };
+
+  // Handle touch move event
+  const handleTouchMove = (e) => {
+    // Check if the touch is over the "Add New" button or the container itself
+    if (
+      (addButtonRef.current && addButtonRef.current.contains(e.target)) ||
+      containerRefs.current.some((ref) => ref && ref.contains(e.target))
+    ) {
+      e.stopPropagation(); // Prevent swipe interaction if over the button or container
+      return;
+    }
+    touchEndX.current = e.touches[0].clientX; // Get the current position while moving
+  };
+
+  // Handle touch end event
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 50) {
+      // Swipe left
+      if (currentIndex < 2) {
+        setCurrentIndex(currentIndex + 1); // Move to the next container
+      }
+    } else if (touchEndX.current - touchStartX.current > 50) {
+      // Swipe right
+      if (currentIndex > 0) {
+        setCurrentIndex(currentIndex - 1); // Move to the previous container
+      }
+    }
+  };
 
   // Add new card with default status 'To Start'
   const handleAddCard = () => {
@@ -41,14 +86,6 @@ export default function Home() {
     }));
   };
 
-  // Handle swipe left and right
-  const handleSwipe = (direction) => {
-    if (direction === "left" && currentIndex < 2) {
-      setCurrentIndex(currentIndex + 1);
-    } else if (direction === "right" && currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
 
   // Filter cards by search query and date range
   const renderCards = (status) => {
@@ -99,7 +136,7 @@ export default function Home() {
       </div>
 
       <div className={styles.header}>
-        <span>Dashboard</span>
+        {/* <span>Dashboard</span> */}
         <div className={styles.tasks}>
           <span>My Todo</span>
         </div>
@@ -120,14 +157,18 @@ export default function Home() {
       <div className={styles.searchBox}>
         <input
           type="text"
-          placeholder="Search tasks..."
+          placeholder="Search"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)} // Update search query
         />
+        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z"/></svg>
       </div>
 
       {/* Date Range Filter */}
       <div className={styles.dateRange}>
+        {/* <div className={styles.icon}>
+
+        </div> */}
         <input
           type="date"
           value={dateRange.from}
@@ -143,44 +184,46 @@ export default function Home() {
       <div className={styles.parenthead}>
         <div className={styles.heading}>
           <span className={styles.dots} id={styles.dotone}></span>
-          <span>To Start</span>
+          <span><b>To Start</b></span>
         </div>
         <div className={styles.heading}>
           <span className={styles.dots} id={styles.dottwo}></span>
-          <span>In Progress</span>
+          <span><b>In Progress</b></span>
         </div>
         <div className={styles.heading}>
           <span className={styles.dots} id={styles.dotthree}></span>
-          <span>Completed</span>
+          <span><b>Completed</b></span>
         </div>
       </div>
 
       {/* Swipeable container */}
-      <div className={styles.swiperContainer} style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+      <div className={styles.swiperContainer} style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      >
         {/* "To Start" container with add task button */}
-        <div className={styles.container}>
+        <div  ref={(el) => (containerRefs.current[0] = el)} className={styles.container}id={styles.start}>
           <ul className={styles.list}>{renderCards("To Start")}</ul>
-          <button
+          <button ref={addButtonRef}
             onClick={() => setIsCardVisible(true)}
             className={styles.addTaskBtn}
           >
-            Add New Task
+           
+            Add New
           </button>
         </div>
 
-        <div className={styles.container}>
+        <div  ref={(el) => (containerRefs.current[1] = el)} className={styles.container} id={styles.prog}>
           <ul className={styles.list}>{renderCards("In Progress")}</ul>
         </div>
 
-        <div className={styles.container}>
+        <div  ref={(el) => (containerRefs.current[2] = el)} className={styles.container}id={styles.comp}>
           <ul className={styles.list}>{renderCards("Completed")}</ul>
         </div>
       </div>
 
-      <div className={styles.swipeBtns}>
-        <button onClick={() => handleSwipe("right")}>Swipe Left</button>
-        <button onClick={() => handleSwipe("left")}>Swipe Right</button>
-      </div>
+      
 
       {isCardVisible && (
         <div className={styles.cardForm}>

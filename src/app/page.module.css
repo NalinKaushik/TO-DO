@@ -1,9 +1,10 @@
 /* General styles */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f9;
+  background-color: #202D48;
+  overflow-y: hidden  ;
 }
 
 .sidenav {
@@ -19,11 +20,10 @@ body {
 }
 
 .sidenav h1 {
-  font-size: 36px;
+  font-size: 40px;
   color: #ffffff;
   text-align: center;
   padding: 10px 0;
-  border-bottom: 2px solid #4f6fb3;
 }
 
 .options {
@@ -40,7 +40,7 @@ body {
   padding: 10px 20px;
   border-radius: 5px;
   margin: 10px 0;
-  width: 80%;
+  width: 90%;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -52,7 +52,13 @@ body {
 
 .main {
   margin-left: 250px;
-  padding: 30px 20px;
+  padding: 20px 20px; 
+  padding-bottom: 5px;
+  border: white 2px solid;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: #ffff;
+  border-radius:8px ;
 }
 
 .header {
@@ -76,11 +82,35 @@ body {
   color: #4f6fb3;
 }
 
+.searchBox input {
+  font-size: 20px;
+  
+  border: #4f6fb35b solid 2px;
+  border-right: none;
+  height: 40px;
+  width: 200px;
+  margin-left: 4px;
+  padding-left: 0px;
+  border-radius: 3px;
+  outline: none;
+}
+
+
+.searchBox{
+  border:#4f6fb35b solid 2px;
+  border-left:none ;
+  border-radius:5px ;
+  width: 25%;
+  margin-left: 20px;
+  height: 42px;
+
+}
+
 .container {
   display: inline-block;
   width: 28%;
   height: auto;
-  margin-right: 2%;
+  margin-right: 5%;
   margin-bottom: 0px;
   border-radius: 8px;
   background-color: #6c7a972d;
@@ -89,8 +119,9 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
   transition: transform 0.3s;
-  min-height: 500px;
+  min-height: 420px;
 }
+
 
 .container:hover {
   transform: scale(1.05);
@@ -172,6 +203,7 @@ body {
   background-color: #333;
   border-radius: 50%;
   margin-right: 5px;
+  
 }
 
 /* Heading section */
@@ -179,7 +211,7 @@ body {
   display:inline-flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 10%;
+  padding: 10px 10%;
   gap: 10px;
 }
 
@@ -201,7 +233,18 @@ body {
 #dotthree {
   background-color: rgb(70, 211, 70);
 }
+.dateRange{
+  border: 2px black solid;
+  margin-right: 20%;
+  display: flex;
 
+}
+.dateRange input
+{
+  height: 35px;
+  width:175px;
+  
+}
 /* Button styles */
 #addnew button {
   background-color: #202D48;
@@ -212,7 +255,7 @@ body {
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-right: 100px;
 }
 
@@ -235,7 +278,7 @@ body {
   padding: 10px 10px 10px 10px;
   background-color: transparent;
   color: black;
-  border: dotted black;
+  border: dotted rgba(0, 0, 0, 0.397);
   cursor: pointer;
   height: 60px;
   width: 95%;
@@ -252,18 +295,15 @@ body {
   .main {
     margin-left: 220px;
   }
-  .dateRange{
+  /* .dateRange{
     display: none;
-  }
+  } */
   .container {
     width: 80%;
     margin-left: 10%;
   }
   
-  .addTaskBtn{
-    position: absolute;
-    top: 10px;
-  }
+  
   .searchBox input{
 
     width: 50%;
@@ -277,16 +317,71 @@ body {
 @media (max-width: 992px) {
   .sidenav {
     /* width: 200px; */
+    display: inline-flex;
+    height: 90px;
+    width: 100%;
+    
+  }
+  .swiperContainer {
+    display: flex;
+    gap: 16px; /* Add spacing between containers */
+    transition: transform 0.3s ease-in-out;
+    overflow-x: auto; /* Allow horizontal scrolling for smaller screens */
+    width: 300%;
+    height: 900px;
+    border: black solid 2px;
+  }
+ 
+  .options span{
     display: none;
   }
+  .sidenav h1{
+    margin-right: 70%;
+  }
+  .main{
+  width: 100%;
+  margin-left: 0%;
+  }
+  .searchBox{
+    margin-top: 5%;
+    width: 300px;
+  }
+  .searchBox input{
+    width: 200px;
+  }
+  .addTaskBtn{
+    width: 100%;
+  }
+  .cards{
+    height: 390px;
+  }
 
-  
-
-  .container {
-    width: 700px;
+  /* .daterange input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png) no-repeat;
+    width: 20px;
     height: 20px;
-    margin-right: 10%;
-    margin-left: 0%;
+    border-width: thin;
+} */
+  /* #comp{
+    float: right;
+  }
+  #start{
+    float: left;
+  }
+  #prog{
+    float: left;
+  } */
+  .container {
+    width: 32%;
+    height: 100%; 
+    margin-right: 0;
+    margin-left: 1%;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    
   }
   
   .header {
@@ -364,15 +459,7 @@ body {
   }
 }
 
-.searchBox input {
-  font-size: 20px;
-  border-radius: 5px;
-  border: #4f6fb35b solid 2px;
-  height: 40px;
-  width: 170px;
-  margin-top: 30px;
-  margin-bottom: 0;
-}
+
 
 /* Mobile-specific adjustments */
 @media only screen and (max-width: 768px) {
@@ -468,11 +555,7 @@ body {
 }
 
 /* Mobile swipe functionality */
-.swiper-container {
-  display: flex;
-  width: 300%;
-  transform: translateX(0);
-}
+
 
 .swiper-slide {
   width: 33.33%;

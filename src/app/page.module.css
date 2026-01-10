@@ -221,6 +221,9 @@ body {
   color: #202D48;
 }
 
+.tasks span{
+  font-size: 35px;
+}
 /* Dot colors */
 #dotone {
   background-color: rgb(52, 130, 233);
@@ -234,7 +237,6 @@ body {
   background-color: rgb(70, 211, 70);
 }
 .dateRange{
-  border: 2px black solid;
   margin-right: 20%;
   display: flex;
 
@@ -243,7 +245,7 @@ body {
 {
   height: 35px;
   width:175px;
-  
+  margin-top: -30%;
 }
 /* Button styles */
 #addnew button {
